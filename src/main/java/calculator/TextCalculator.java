@@ -6,7 +6,7 @@ public class TextCalculator {
     public static final int OPERATOR_INDEX = 1;
     public static final int OPERATOR_DELIMITER = 2;
 
-    public double run(String input) {
+    public double calculate(String input) {
         String[] inputArray = split(input);
 
         double result = Double.parseDouble(inputArray[STANDARD_NUMBER]);

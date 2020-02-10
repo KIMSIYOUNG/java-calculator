@@ -9,7 +9,7 @@ public class CalculatorController {
 
     public void runCalculator() {
         String input = userInput.requestInput();
-        double result = textCalculator.run(input);
+        double result = textCalculator.calculate(input);
         OutputView.result(result);
     }
 }
