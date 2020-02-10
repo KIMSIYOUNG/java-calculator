@@ -9,7 +9,7 @@ public class Application {
             CalculatorController model = new CalculatorController();
             model.runCalculator();
         } catch (Exception e) {
-            OutputView.inputError();
+            OutputView.inputError(e);
             Application.main(args);
         }
     }

@@ -37,13 +37,13 @@ public class InputView {
     private void checkPositionIsCorrect(String[] inputArray) throws IllegalArgumentException {
         for (int i = FIRST_OPERATOR; i < inputArray.length; i += OPERATOR_DELIMITER) {
             if (!Operator.isOperator(inputArray[i]) || !isNumber(inputArray[i + 1]))
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("정확하지 않은 입력입니다.");
         }
     }
 
     private void checkFirstNumberAndLength(String[] inputArray) {
         if (!isCorrectLength(inputArray.length) || !isNumber(inputArray[0])) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("첫 자리는 숫자여야하며 길이가 잘 못 되었습니다.");
         }
     }
 
