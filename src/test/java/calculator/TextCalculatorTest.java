@@ -15,14 +15,14 @@ class TextCalculatorTest {
     @DisplayName("올바른 입력값에서 올바른 결과를 출력하는지 테스트")
     public void testCorrectInput() {
         String example = "2 + 3 * 4 / 2";
-        assertThat(calculator.calculate(example)).isEqualTo(10);
+        assertThat(calculator.run(example)).isEqualTo(10);
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"3332", "123123", "2", "32", "4235"})
     @DisplayName("숫자만 입력되는 경우 그 수를 리턴하는지")
     public void testWrongInputOnlyNumber(String input) {
-        assertThat(calculator.calculate(input)).isEqualTo(Double.parseDouble(input));
+        assertThat(calculator.run(input)).isEqualTo(Double.parseDouble(input));
     }
 
     @Test
@@ -30,7 +30,7 @@ class TextCalculatorTest {
     public void testWrongInputBlank() {
         String input = "";
         assertThatThrownBy(() -> {
-            calculator.calculate(input);
+            calculator.run(input);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -39,7 +39,7 @@ class TextCalculatorTest {
     public void testWrongInputNull() {
         String input = null;
         assertThatThrownBy(() -> {
-            calculator.calculate(input);
+            calculator.run(input);
         }).isInstanceOf(NullPointerException.class);
     }
 
@@ -48,7 +48,7 @@ class TextCalculatorTest {
     public void testWrongInputDivideByZero() {
         String input = "3 + 4 + 2 / 0";
         assertThatThrownBy(() -> {
-            calculator.calculate(input);
+            calculator.run(input);
         }).isInstanceOf(ArithmeticException.class);
     }
 
@@ -57,7 +57,7 @@ class TextCalculatorTest {
     @DisplayName("문자만 입력되는 경우 예외가 발생하는지")
     public void testWrongInputOnlyString(String input) {
         assertThatThrownBy(() -> {
-            calculator.calculate(input);
+            calculator.run(input);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -66,7 +66,7 @@ class TextCalculatorTest {
     @DisplayName("길이가 적절하지 않은 경우 예외가 발생하는지")
     public void testWrongLengthInput(String input) {
         assertThatThrownBy(() -> {
-            calculator.calculate(input);
+            calculator.run(input);
         }).isInstanceOf(IndexOutOfBoundsException.class);
     }
 }

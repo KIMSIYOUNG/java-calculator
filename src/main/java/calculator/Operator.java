@@ -9,14 +9,13 @@ public enum Operator {
     SUBTRACT("-", (a, b) -> (a - b)),
     MULTIPLY("*", (a, b) -> (a * b)),
     DIVIDE("/", (a, b) -> {
-        double result = a / b;
-        if (Double.isInfinite(result)) {
-            throw new ArithmeticException("0으로는 나눌 수 없습니다.");
+        if (b == 0) {
+            throw new ArithmeticException("0으로 나눌 수 없습니다.");
         }
-        return result;
+        return a / b;
     });
 
-    public static final String OPERATOR_VALUE = "^[\\+\\-\\*\\/]$";
+    public static final String OPERATOR_PATTERN = "^[\\+\\-\\*\\/]$";
     private String operator;
     private BiFunction<Double, Double, Double> expression;
 
@@ -33,7 +32,7 @@ public enum Operator {
     }
 
     public static boolean isOperator(String userInput) {
-        if (!userInput.matches(OPERATOR_VALUE)) {
+        if (!userInput.matches(OPERATOR_PATTERN)) {
             return false;
         }
         return true;

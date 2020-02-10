@@ -14,18 +14,16 @@ public class InputView {
 
     public String requestInput() {
         String userInput = sc.nextLine().trim();
-        if (hasNoError(userInput)) {
-            return userInput;
-        }
-        throw new RuntimeException();
+        validateInput(userInput);
+        return userInput;
+        // TODO: 2020/02/10 익셉션 커스터마이징도 한 번 알아보기.
     }
 
-    private boolean hasNoError(String userInput) {
+    private void validateInput(String userInput) {
         String[] inputArray = userInput.split(BLANK);
         checkFirstNumberAndLength(inputArray);
         checkPositionIsCorrect(inputArray);
         checkNullAndBlank(userInput);
-        return true;
     }
 
     private void checkNullAndBlank(String input) {
@@ -36,13 +34,13 @@ public class InputView {
 
     private void checkPositionIsCorrect(String[] inputArray) throws IllegalArgumentException {
         for (int i = FIRST_OPERATOR; i < inputArray.length; i += OPERATOR_DELIMITER) {
-            if (!Operator.isOperator(inputArray[i]) || !isNumber(inputArray[i + 1]))
+            if (!Operator.isOperator(inputArray[i]) || isNotNumber(inputArray[i + 1]))
                 throw new IllegalArgumentException("정확하지 않은 입력입니다.");
         }
     }
 
     private void checkFirstNumberAndLength(String[] inputArray) {
-        if (!isCorrectLength(inputArray.length) || !isNumber(inputArray[0])) {
+        if (!isCorrectLength(inputArray.length) || isNotNumber(inputArray[0])) {
             throw new IllegalArgumentException("첫 자리는 숫자여야하며 길이가 잘 못 되었습니다.");
         }
     }
@@ -57,10 +55,7 @@ public class InputView {
         return length % 2 == 1;
     }
 
-    private boolean isNumber(String target) {
-        if (!target.matches(NUMBER_FORMAT)) {
-            throw new IllegalArgumentException("수를 입력 할 자리에 다른 값을 입력하였습니다.");
-        }
-        return true;
+    private boolean isNotNumber(String target) {
+        return target.matches(NUMBER_FORMAT);
     }
 }
