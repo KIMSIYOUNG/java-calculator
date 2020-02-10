@@ -32,10 +32,7 @@ public enum Operator {
     }
 
     public static boolean isOperator(String userInput) {
-        if (!userInput.matches(OPERATOR_PATTERN)) {
-            return false;
-        }
-        return true;
+        return userInput.matches(OPERATOR_PATTERN);
     }
 
     public double calculate(double left, double right) {
