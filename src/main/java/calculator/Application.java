@@ -3,19 +3,11 @@ package calculator;
 import io.OutputView;
 
 public class Application {
-    public static void main(String[] args) {
-        while (run());
-    }
-
-    private static boolean run() {
-        try {
-            OutputView.welcome();
-            CalculatorController model = new CalculatorController();
-            model.runCalculator();
-            return false;
-        } catch (Exception e) {
-            OutputView.inputError(e);
-            return true;
-        }
-    }
+	public static void main(String[] args) {
+		try {
+			new CalculatorController().run();
+		} catch (Exception e) {
+			OutputView.printException(e.getMessage());
+		}
+	}
 }

@@ -15,40 +15,40 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SetTest {
 
-    private Set numbers;
+	private Set numbers;
 
-    @BeforeEach
-    void setUp() {
-        numbers = new HashSet<>();
-        numbers.add(1);
-        numbers.add(1);
-        numbers.add(2);
-        numbers.add(3);
-    }
+	@BeforeEach
+	void setUp() {
+		numbers = new HashSet<>();
+		numbers.add(1);
+		numbers.add(1);
+		numbers.add(2);
+		numbers.add(3);
+	}
 
-    @Test
-    void size() {
-        int size = numbers.size();
-        assertThat(size).isEqualTo(3);
-    }
+	@Test
+	void size() {
+		int size = numbers.size();
+		assertThat(size).isEqualTo(3);
+	}
 
-    @Test
-    void setContains() {
-        assertTrue(numbers.contains(1));
-        assertTrue(numbers.contains(2));
-        assertTrue(numbers.contains(3));
-    }
+	@Test
+	void setContains() {
+		assertTrue(numbers.contains(1));
+		assertTrue(numbers.contains(2));
+		assertTrue(numbers.contains(3));
+	}
 
-    @DisplayName("메소드내 입력 값이 많아짐을 줄이기 위한 ParameterizedTest")
-    @ParameterizedTest
-    @ValueSource(ints = {1, 2, 3})
-    void parameterContain(int input) {
-        assertTrue(numbers.contains(input));
-    }
+	@DisplayName("메소드내 입력 값이 많아짐을 줄이기 위한 ParameterizedTest")
+	@ParameterizedTest
+	@ValueSource(ints = {1, 2, 3})
+	void parameterContain(int input) {
+		assertTrue(numbers.contains(input));
+	}
 
-    @ParameterizedTest
-    @CsvSource(value = {"1:true", "2:true", "3:true", "4:false"}, delimiter = ':')
-    void toLowerCase(int input, boolean expected) {
-        assertThat(numbers.contains(input)).isEqualTo(expected);
-    }
+	@ParameterizedTest
+	@CsvSource(value = {"1:true", "2:true", "3:true", "4:false"}, delimiter = ':')
+	void toLowerCase(int input, boolean expected) {
+		assertThat(numbers.contains(input)).isEqualTo(expected);
+	}
 }

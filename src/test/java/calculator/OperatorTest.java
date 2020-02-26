@@ -8,7 +8,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class OperatorTest {
-
     @ParameterizedTest
     @ValueSource(strings = {"+", "-", "*", "/"})
     @DisplayName("입력값과 Enum내의 연산자가 잘 매칭되어 있는지, 테스트합니다.")
